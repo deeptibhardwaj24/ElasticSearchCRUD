@@ -1,15 +1,12 @@
 package com.knoldus
 
 
-import org.elasticsearch.action.bulk.BulkRequestBuilder
 import org.elasticsearch.action.get.GetResponse
-import org.elasticsearch.index.get.GetField
 import org.elasticsearch.action.index.IndexResponse
 import org.elasticsearch.action.search.SearchResponse
-import org.elasticsearch.action.update.{UpdateResponse, UpdateRequest}
+import org.elasticsearch.action.update.{UpdateResponse}
 import org.elasticsearch.client.Client
 
-import scala.io.Source
 
 /**
   * Created by knoldus on 2/4/16.
@@ -35,9 +32,7 @@ trait EmployeeServiceApi {
   def readAll:SearchResponse={
 
       val result=client.prepareSearch("employeedb").setTypes("Employee").execute().actionGet();
-    println(result)
-       //result.getHits.getTotalHits
-result
+    result
   }
   def update(field:String,value:Any,id:Int):UpdateResponse ={
   client.prepareUpdate("employeedb", "Employee", id.toString).setDoc(field,value).setRefresh(true).execute().actionGet()
@@ -49,10 +44,9 @@ result
 
   }
 
-  def delete(): Unit ={
 
-  }
 
 }
+
 
 class EmployeeService extends EmployeeServiceApi

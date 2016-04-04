@@ -27,7 +27,7 @@ class EsManager {
     .put("cluster.name", "elasticsearch")
     .build()
 
-  println(s"ElasticClient: Nodes => $nodes , Port => {$port}")
+  //println(s"ElasticClient: Nodes => $nodes , Port => {$port}")
 
   val client: Client = TransportClient.builder().settings(settings).build().addTransportAddresses(addresses: _*)
 

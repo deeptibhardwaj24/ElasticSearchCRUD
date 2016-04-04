@@ -17,20 +17,19 @@ class EmployeeServiceTest extends FunSuite with EmployeeServiceApi {
   }
 
   test("read id 1 document"){
-    val result = employee.get(2)
-    assert(result.getId  === "2" )
+    val result = employee.get(1)
+    assert(result.getId  === "1" )
   }
 
   test(" update a document "){
-    val result= employee.update("name", "Richa",4)
+    val result= employee.update("name", "Nikhil",4)
     assert(result.getId === "4")
 
   }
 
-  test("searching "){
+  test("read all documents "){
     val result = employee.readAll
     assert(result.getHits.getTotalHits === 4)
   }
-
 
 }
